@@ -8,17 +8,23 @@ public class InputManager : MonoBehaviour
     Rigidbody rb;
     Renderer rend;
 
+
+
     void Start()
     {
         movement = GetComponent<Movement>();
         rb = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
     }
-
+    int frame = 0;
+    float jumpingCooldown = 0f;
     void Update()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetButton("Jump") && frame % 5 == 0 /*jumpingCooldown % 0.16f == 0f*/)
             movement.Jump();
+
+        frame++;
+        jumpingCooldown += Time.deltaTime;
 
         if (Input.GetButtonDown("ChangeColor"))
         {
@@ -35,9 +41,14 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetButton("Horizontal"))
             rb.velocity = new Vector3(movement.Move(Input.GetAxis("Horizontal")), rb.velocity.y, rb.velocity.z);
+        else if (rb.velocity.x > 0.1f)
+            rb.velocity = new Vector3(rb.velocity.x - 0.2f, rb.velocity.y, rb.velocity.z);
+        else if (rb.velocity.x < - 0.1f)
+            rb.velocity = new Vector3(rb.velocity.x + 0.2f, rb.velocity.y, rb.velocity.z);
+        else if ((rb.velocity.x > 0.1f) && (rb.velocity.x < -0.1f))
+            rb.velocity = new Vector3(0f, rb.velocity.y, rb.velocity.z);
 
-        Debug.Log(DimensionManager.canChangeDimension);
-
+     
     }
 
 

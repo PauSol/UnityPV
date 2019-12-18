@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float jumpMultiplier;
     float jumpForce;
-    bool isJumping;
+    public bool isJumping;
 
     Collider col;
 
@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
         Ray landingRayX = new Ray(rayOriginX, Vector3.down);
         Ray landingRayXNegative = new Ray(rayOriginXNegative, Vector3.down);
 
+
         Debug.DrawRay(rayOrigin, Vector3.down * rayDistanceY, Color.red);
 
         return (Physics.SphereCast(landingRay, 0.1f, rayDistanceY, ~(LayerManager.layerPlayer)) | 
@@ -52,13 +53,19 @@ public class Movement : MonoBehaviour
 
     public float Move(float input)
     {
-        return speed = input * speedMultiplier;
+        speed = input * speedMultiplier;
+
+        return speed;
     }
 
     public void Jump()
     {
-        if (IsGrounded())
+        
+        if (IsGrounded() )
         {
+           
+            
+
                 rb.AddForce(Vector3.up * jumpMultiplier, ForceMode.Impulse);
             if (!isJumping)
             {

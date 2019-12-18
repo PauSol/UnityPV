@@ -43,11 +43,19 @@ public static class LayerManager
 
         bitLayer += (inputPositive == true) ? 1 : -1;
 
-        //RGB world
-        if (bitLayer < minLayer)
-            bitLayer = maxLayer;
-        else if (bitLayer > maxLayer)
-            bitLayer = minLayer;
+        if (DimensionManager.inRealDimension) //if RGB dimension
+        {
+            if (bitLayer < minLayerRGB)
+                bitLayer = maxLayerRGB;
+            else if (bitLayer > maxLayerRGB)
+                bitLayer = minLayerRGB;
+        } else if (!DimensionManager.inRealDimension) //if BW world
+        {
+            if (bitLayer < minLayerBW)
+                bitLayer = maxLayerBW;
+            else if (bitLayer > maxLayerBW)
+                bitLayer = minLayerBW;
+        }
 
         layerPlayer = 1 << bitLayer;
 

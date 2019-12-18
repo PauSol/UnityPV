@@ -8,6 +8,10 @@ public static class ColorManager
     public static int maxColors;
 
     static int color;
+    static int minColorRGB;
+    static int maxColorRGB;
+    static int minColorBW;
+    static int maxColorBW;
 
     static bool inputPositive;
 
@@ -23,6 +27,10 @@ public static class ColorManager
         
         maxColors = colors.Count;
 
+        minColorRGB = 0;
+        maxColorRGB = 2;
+        minColorBW = 3;
+        maxColorBW = 4;
     }
 
     public static Color ChangeColor(float input)
@@ -30,11 +38,20 @@ public static class ColorManager
         inputPositive = (input > 0f) ? true : false;
 
         color += (inputPositive == true) ? 1 : -1;
-
-        if (color < 0)
-            color = maxColors - 1;
-        else if (color >= maxColors)
-            color = 0;
+        
+        if (DimensionManager.inRealDimension) //if RGB dimension
+        {
+            if (color < minColorRGB)
+                color = maxColorRGB;
+            else if (color > maxColorRGB)
+                color = minColorRGB;
+        } else if (!DimensionManager.inRealDimension) // if BW dimension
+        {
+            if (color < minColorBW)
+                color = maxColorBW;
+            else if (color > maxColorBW)
+                color = minColorBW;
+        }
 
         return colors[color];
     }
