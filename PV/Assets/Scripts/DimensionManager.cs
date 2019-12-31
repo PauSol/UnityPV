@@ -16,6 +16,13 @@ public class DimensionManager : MonoBehaviour
         inRealDimension = true;
         rgbDimension = GameObject.Find("RGB");
         bwDimension = GameObject.Find("BW");
+
+        if (bwDimension != null)
+            bwDimension.SetActive(false);
+
+        if (rgbDimension != null)
+            rgbDimension.SetActive(true);
+
     }
 
     public static int ChangeDimension()

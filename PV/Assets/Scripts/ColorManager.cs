@@ -4,7 +4,8 @@ using UnityEngine;
 
 public static class ColorManager
 {
-    public static List<Color> colors;
+    public static Color[] colors;
+    public static Color[] colorsAlpha;
     public static int maxColors;
 
     static int color;
@@ -17,15 +18,22 @@ public static class ColorManager
 
     public static void InitColors()
     {
-        colors = new List<Color>();
+        colors = new Color[5];
+        colorsAlpha = new Color[5];
 
-        colors.Add(Color.red);
-        colors.Add(Color.green);
-        colors.Add(Color.blue);
-        colors.Add(Color.black);
-        colors.Add(Color.white);
+        colors[0] = Color.red;
+        colors[1] = Color.green;
+        colors[2] = Color.blue;
+        colors[3] = Color.black;
+        colors[4] = Color.white;
+
+        colorsAlpha[0] = new Color(255f, 0f, 0f, 255f / 2f);
+        colorsAlpha[0] = new Color(0f, 255f, 0f, 255f / 2f);
+        colorsAlpha[0] = new Color(0f, 0f, 255f, 255f / 2f);
+        colorsAlpha[0] = new Color(0, 0f, 0f, 255f / 2f);
+        colorsAlpha[0] = new Color(255f, 255f, 255f, 255f / 2f);
         
-        maxColors = colors.Count;
+        maxColors = colors.Length;
 
         minColorRGB = 0;
         maxColorRGB = 2;
@@ -64,5 +72,13 @@ public static class ColorManager
     {
         return colors[3];
     }
+
+    //public static void changePlatformsToAlpha()
+    //{
+    //    if (LayerManager.bitLayer - 9 == color)
+    //    {
+            
+    //    }
+    //}
 
 }
