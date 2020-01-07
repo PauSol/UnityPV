@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -7,8 +8,6 @@ public class InputManager : MonoBehaviour
     Movement movement;
     Rigidbody rb;
     Renderer rend;
-
-
 
     void Start()
     {
@@ -48,6 +47,15 @@ public class InputManager : MonoBehaviour
         else if ((rb.velocity.x > 0.1f) && (rb.velocity.x < -0.1f))
             rb.velocity = new Vector3(0f, rb.velocity.y, rb.velocity.z);
 
+        if (Input.GetButtonDown("Restart"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetButtonDown("Exit"))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
      
     }
 
