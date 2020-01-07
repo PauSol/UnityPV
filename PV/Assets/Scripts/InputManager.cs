@@ -44,13 +44,13 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetButton("Horizontal"))
             rb.velocity = new Vector3(movement.Move(Input.GetAxis("Horizontal")), rb.velocity.y, rb.velocity.z);
-        else if (rb.velocity.x > 0.1f)
-            rb.velocity = new Vector3(rb.velocity.x - 0.2f, rb.velocity.y, rb.velocity.z);
-        else if (rb.velocity.x < - 0.1f)
-            rb.velocity = new Vector3(rb.velocity.x + 0.2f, rb.velocity.y, rb.velocity.z);
-        else if ((rb.velocity.x > 0.1f) && (rb.velocity.x < -0.1f))
+        else if (rb.velocity.x != 0f)
             rb.velocity = new Vector3(0f, rb.velocity.y, rb.velocity.z);
 
+        //    rb.velocity = new Vector3(rb.velocity.x - 0.2f, rb.velocity.y, rb.velocity.z);
+        //else if (rb.velocity.x < - 0.1f)
+        //    rb.velocity = new Vector3(rb.velocity.x + 0.2f, rb.velocity.y, rb.velocity.z);
+        //else if ((rb.velocity.x > 0.1f) && (rb.velocity.x < -0.1f))
         if (Input.GetButtonDown("Restart"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
