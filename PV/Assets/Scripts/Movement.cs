@@ -63,9 +63,6 @@ public class Movement : MonoBehaviour
         
         if (IsGrounded() )
         {
-           
-            
-
                 rb.AddForce(Vector3.up * jumpMultiplier, ForceMode.Impulse);
             if (!isJumping)
             {

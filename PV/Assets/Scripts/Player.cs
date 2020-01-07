@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     Renderer rend;
     // Start is called before the first frame update
+    Vector3 initPos;
 
     
     void Awake()
@@ -18,6 +19,18 @@ public class Player : MonoBehaviour
         rend.material.color = ColorManager.colors[0];
         gameObject.layer = LayerManager.starterLayer;
 
+        initPos = transform.position;
+
+    }
+
+    public void Restart()
+    {
+        transform.position = initPos;
+        rend.material.color = ColorManager.colors[0];
+        gameObject.layer = LayerManager.starterLayer;
+
+        if (!DimensionManager.inRealDimension)
+            DimensionManager.inRealDimension = true;
     }
 
  

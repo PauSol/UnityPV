@@ -8,13 +8,17 @@ public class InputManager : MonoBehaviour
     Movement movement;
     Rigidbody rb;
     Renderer rend;
+    Player player;
 
     void Start()
     {
         movement = GetComponent<Movement>();
         rb = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
+        player = GetComponent<Player>();
+
     }
+
     int frame = 0;
     float jumpingCooldown = 0f;
     void Update()
@@ -50,6 +54,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetButtonDown("Restart"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //player.Restart();
         }
 
         if (Input.GetButtonDown("Exit"))
