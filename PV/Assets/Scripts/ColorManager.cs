@@ -18,6 +18,7 @@ public static class ColorManager
 
     public static void InitColors()
     {
+        color = 0;
         colors = new Color[5];
         colorsAlpha = new Color[5];
 
@@ -66,11 +67,13 @@ public static class ColorManager
 
     public static Color changeToRed()
     {
-        return colors[0];
+        color = 0;
+        return colors[color];
     }
     public static Color changeToBlack()
     {
-        return colors[3];
+        color = 3;
+        return colors[color];
     }
 
     //public static void changePlatformsToAlpha()

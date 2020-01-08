@@ -20,14 +20,10 @@ public class InputManager : MonoBehaviour
     }
 
     int frame = 0;
-    float jumpingCooldown = 0f;
     void Update()
     {
-        if (Input.GetButton("Jump") && frame % 5 == 0 /*jumpingCooldown % 0.16f == 0f*/)
+        if (Input.GetButtonDown("Jump")/* && frame % 5 == 0*/)
             movement.Jump();
-
-        frame++;
-        jumpingCooldown += Time.deltaTime;
 
         if (Input.GetButtonDown("ChangeColor"))
         {
