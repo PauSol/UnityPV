@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     Vector3 initPos;
 
+
+    Image colorBefore;
+    Image colorAfter;
     
     void Awake()
     {
@@ -19,8 +23,17 @@ public class Player : MonoBehaviour
         rend.material.color = ColorManager.colors[0];
         gameObject.layer = LayerManager.starterLayer;
 
+        colorBefore = GameObject.Find("QColor").GetComponent<Image>();
+        colorAfter = GameObject.Find("EColor").GetComponent<Image>();
+
         initPos = transform.position;
 
+    }
+
+    void Update()
+    {
+        colorBefore.color = ColorManager.ColorBefore();
+        colorAfter.color = ColorManager.ColorAfter();
     }
 
     public void Restart()

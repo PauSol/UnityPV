@@ -30,6 +30,9 @@ public class InputManager : MonoBehaviour
             float input = Input.GetAxis("ChangeColor");
             rend.material.color = ColorManager.ChangeColor(input);
             gameObject.layer = LayerManager.ChangeLayer(input);
+
+            //Instantiate(Particles.changeColorParticle, transform.position, Particles.changeColorParticle.transform.rotation);
+
         }
 
         if (Input.GetButtonDown("ChangeDimension") && DimensionManager.canChangeDimension)

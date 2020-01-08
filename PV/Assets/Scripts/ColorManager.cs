@@ -76,11 +76,56 @@ public static class ColorManager
         return colors[color];
     }
 
+    public static Color ColorBefore()
+    {
+        int colorBefore = color - 1;
+
+        if (DimensionManager.inRealDimension)
+        {
+            if (colorBefore < 0)
+                colorBefore = maxColorRGB;
+            else if (colorBefore > 2)
+                colorBefore = minColorRGB;
+
+        } else if (!DimensionManager.inRealDimension)
+        {
+            if (colorBefore < 3)
+                colorBefore = maxColorBW;
+            if (colorBefore > 4)
+                colorBefore = minColorRGB;
+        }
+
+        return colors[colorBefore];
+    }
+
+    public static Color ColorAfter()
+    {
+        int colorAfter = color + 1;
+
+        if (DimensionManager.inRealDimension)
+        {
+            if (colorAfter < 0)
+                colorAfter = maxColorRGB;
+            else if (colorAfter > 2)
+                colorAfter = minColorRGB;
+
+        }
+        else if (!DimensionManager.inRealDimension)
+        {
+            if (colorAfter < 3)
+                colorAfter = maxColorBW;
+            if (colorAfter > 4)
+                colorAfter = minColorBW;
+        }
+
+        return colors[colorAfter];
+    }
+
     //public static void changePlatformsToAlpha()
     //{
     //    if (LayerManager.bitLayer - 9 == color)
     //    {
-            
+
     //    }
     //}
 
