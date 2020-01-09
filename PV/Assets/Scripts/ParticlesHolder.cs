@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ParticlesHolder : MonoBehaviour
 {
-    public static ParticleSystem.MainModule main;
+    public static ParticleSystem.MainModule jumpMain;
     public GameObject changeColorParticle;
-    public static GameObject changeDimensionParticle;
+    public GameObject changeDimensionParticle;
+
+    void Start()
+    {
+        jumpMain = changeColorParticle.GetComponent<ParticleSystem>().main;
+    }
 
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Movement : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class Movement : MonoBehaviour
     [SerializeField]
     float jumpMultiplier;
     float jumpForce;
-    public bool isJumping;
 
     Collider col;
 
@@ -60,14 +60,10 @@ public class Movement : MonoBehaviour
 
     public void Jump()
     {
-        
-        if (IsGrounded() )
+        if (IsGrounded())
         {
-                rb.AddForce(Vector3.up * jumpMultiplier, ForceMode.Impulse);
-            if (!isJumping)
-            {
-                isJumping = true;
-            }
+            Player.audioClip[0].Play();
+            rb.AddForce(Vector3.up * jumpMultiplier, ForceMode.Impulse);
         }
 
     }

@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     Vector3 initPos;
 
+    public static AudioSource[] audioClip;
+
 
     Image colorBefore;
     Image colorAfter;
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour
 
         colorBefore = GameObject.Find("QColor").GetComponent<Image>();
         colorAfter = GameObject.Find("EColor").GetComponent<Image>();
+
+        audioClip = GameObject.Find("Sounds").GetComponents<AudioSource>();
 
         initPos = transform.position;
 

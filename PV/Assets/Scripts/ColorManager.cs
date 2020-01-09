@@ -61,6 +61,8 @@ public static class ColorManager
             else if (color > maxColorBW)
                 color = minColorBW;
         }
+        ParticlesHolder.jumpMain.startColor = colors[color];
+        Player.audioClip[2].Play();
 
         return colors[color];
     }

@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     Rigidbody rb;
     Renderer rend;
     Player player;
+    ParticlesHolder particlesHolder;
 
     void Start()
     {
@@ -16,13 +17,13 @@ public class InputManager : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
         player = GetComponent<Player>();
+        particlesHolder = GetComponent<ParticlesHolder>();
 
     }
 
-    int frame = 0;
     void Update()
     {
-        if (Input.GetButtonDown("Jump")/* && frame % 5 == 0*/)
+        if (Input.GetButtonDown("Jump"))
             movement.Jump();
 
         if (Input.GetButtonDown("ChangeColor"))
@@ -30,8 +31,8 @@ public class InputManager : MonoBehaviour
             float input = Input.GetAxis("ChangeColor");
             rend.material.color = ColorManager.ChangeColor(input);
             gameObject.layer = LayerManager.ChangeLayer(input);
-
-            //Instantiate(Particles.changeColorParticle, transform.position, Particles.changeColorParticle.transform.rotation);
+            //Particles
+            Destroy(Instantiate(particlesHolder.changeColorParticle, transform.position, particlesHolder.changeColorParticle.transform.rotation), 1f);
 
         }
 
@@ -39,6 +40,8 @@ public class InputManager : MonoBehaviour
         {
             gameObject.layer = DimensionManager.ChangeDimension();
             rend.material.color = (gameObject.layer == 9) ? ColorManager.changeToRed() : ColorManager.changeToBlack();
+            //Particles
+            Destroy(Instantiate(particlesHolder.changeDimensionParticle, transform.position - Vector3.up / 2f, particlesHolder.changeDimensionParticle.transform.rotation), 1f);
         }
 
         if (Input.GetButton("Horizontal"))

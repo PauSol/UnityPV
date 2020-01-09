@@ -39,6 +39,9 @@ public class DimensionManager : MonoBehaviour
             LayerManager.bitLayer = 9;
             LayerManager.layerPlayer = 1 << LayerManager.bitLayer;
         }
+
+        Player.audioClip[1].Play();
+
         return LayerManager.bitLayer;
     }
 
